@@ -2,6 +2,11 @@
 
 Now, our Android Application will use the newest API's and libraries. For designing our Application layout we will use a modern UI toolkit called jetpack compose. For communicating with our backend we will use a retrofit, and paging 3 library along with remote mediator, so we can automatically store and cache that data from the server into our Local ROOM database. That way we will be able to load the data into our Application, even if we don't have an internet connection.
 
+## The Brief
+
+## Architecture & Libraries
+
+
 
 Develop an Android Application
 Develop a Backend Server with Ktor
@@ -55,3 +60,15 @@ Pager Indicators
 System UI Controller
 Both Light and Dark Theme Design
 Server Deployment on Heroku
+
+## App preview:
+
+
+
+
+Image #1            |  Image #2             |  Image #3           
+:-------------------------:|:----------------------------:|:----------------------------:
+<img src="images/Demeter_Recipes_1.jpg">    |  <img src="images/Demeter_Recipes_2.jpg">     |  <img src="images/Demeter_Recipes_3.jpg"> 
+
+
+
