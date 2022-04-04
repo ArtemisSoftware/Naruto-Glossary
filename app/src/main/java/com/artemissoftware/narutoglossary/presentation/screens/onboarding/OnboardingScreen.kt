@@ -8,7 +8,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import com.artemissoftware.narutoglossary.navigation.Screen
 import com.artemissoftware.narutoglossary.presentation.screens.onboarding.composables.FinishButton
 import com.artemissoftware.narutoglossary.presentation.screens.onboarding.composables.PagerScreen
 import com.artemissoftware.narutoglossary.presentation.screens.onboarding.models.OnBoardingPage
@@ -22,7 +24,8 @@ import com.google.accompanist.pager.rememberPagerState
 @ExperimentalPagerApi
 @Composable
 fun OnboardingScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    onboardingViewModel: OnboardingViewModel = hiltViewModel()
 ) {
     val pages = listOf(
         OnBoardingPage.First,
@@ -61,9 +64,9 @@ fun OnboardingScreen(
             pagerState = pagerState,
             lastOnBoardingPage = pages.size -1
         ) {
-//            navController.popBackStack()
-//            navController.navigate(Screen.Home.route)
-//            welcomeViewModel.saveOnBoardingState(completed = true)
+            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
+            onboardingViewModel.saveOnBoardingState(completed = true)
         }
     }
 }
