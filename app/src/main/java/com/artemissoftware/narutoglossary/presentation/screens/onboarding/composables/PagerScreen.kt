@@ -11,8 +11,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.artemissoftware.narutoglossary.R
 import com.artemissoftware.narutoglossary.presentation.screens.onboarding.models.OnBoardingPage
+import com.artemissoftware.narutoglossary.ui.theme.EXTRA_LARGE_PADDING
+import com.artemissoftware.narutoglossary.ui.theme.SMALL_PADDING
 import com.artemissoftware.narutoglossary.ui.theme.descriptionColor
 import com.artemissoftware.narutoglossary.ui.theme.titleColor
 
@@ -42,14 +45,38 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
         )
         Text(
             modifier = Modifier
-                .fillMaxWidth()/*
+                .fillMaxWidth()
                 .padding(horizontal = EXTRA_LARGE_PADDING)
-                .padding(top = SMALL_PADDING)*/,
+                .padding(top = SMALL_PADDING),
             text = onBoardingPage.description,
             color = MaterialTheme.colors.descriptionColor,
             fontSize = MaterialTheme.typography.subtitle1.fontSize,
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun FirstOnBoardingScreenPreview() {
+    Column(modifier = Modifier.fillMaxSize()) {
+        PagerScreen(onBoardingPage = OnBoardingPage.First)
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun SecondOnBoardingScreenPreview() {
+    Column(modifier = Modifier.fillMaxSize()) {
+        PagerScreen(onBoardingPage = OnBoardingPage.Second)
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun ThirdOnBoardingScreenPreview() {
+    Column(modifier = Modifier.fillMaxSize()) {
+        PagerScreen(onBoardingPage = OnBoardingPage.Third)
     }
 }
