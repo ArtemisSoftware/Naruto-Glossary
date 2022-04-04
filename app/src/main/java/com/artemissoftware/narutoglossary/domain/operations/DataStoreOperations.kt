@@ -1,8 +1,8 @@
-package com.artemissoftware.narutoglossary.domain.repository
+package com.artemissoftware.narutoglossary.domain.operations
 
 import kotlinx.coroutines.flow.Flow
 
-interface DataStoreRepository {
+interface DataStoreOperations {
 
     suspend fun saveOnBoardingState(completed: Boolean)
     fun readOnBoardingState(): Flow<Boolean>

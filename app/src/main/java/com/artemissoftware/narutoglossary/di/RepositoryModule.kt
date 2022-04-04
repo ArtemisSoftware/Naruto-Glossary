@@ -1,8 +1,12 @@
 package com.artemissoftware.narutoglossary.di
 
 import android.content.Context
-import com.artemissoftware.narutoglossary.data.repository.DataStoreRepositoryImpl
-import com.artemissoftware.narutoglossary.domain.repository.DataStoreRepository
+import com.artemissoftware.narutoglossary.data.operations.DataStoreOperationsImpl
+import com.artemissoftware.narutoglossary.data.repository.Repository
+import com.artemissoftware.narutoglossary.domain.operations.DataStoreOperations
+import com.artemissoftware.narutoglossary.domain.usecase.onboarding.GetOnBoardingCompletionUseCase
+import com.artemissoftware.narutoglossary.domain.usecase.onboarding.OnboardingUseCases
+import com.artemissoftware.narutoglossary.domain.usecase.onboarding.SaveOnBoardingCompletionUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,19 +20,19 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDataStoreRepository(
+    fun provideDataStoreOperations(
         @ApplicationContext context: Context
-    ): DataStoreRepository {
-        return DataStoreRepositoryImpl(context = context)
+    ): DataStoreOperations {
+        return DataStoreOperationsImpl(context = context)
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideUseCases(repository: Repository): UseCases {
-//        return UseCases(
-//            saveOnBoardingUseCase = SaveOnBoardingUseCase(repository),
-//            readOnBoardingUseCase = ReadOnBoardingUseCase(repository)
-//        )
-//    }
+    @Provides
+    @Singleton
+    fun provideOnboardingUseCases(repository: Repository): OnboardingUseCases {
+        return OnboardingUseCases(
+            getOnBoardingCompletionUseCase = GetOnBoardingCompletionUseCase(repository = repository),
+            saveOnBoardingCompletionUseCase = SaveOnBoardingCompletionUseCase(repository = repository)
+        )
+    }
 
 }

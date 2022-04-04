@@ -1,4 +1,4 @@
-package com.artemissoftware.narutoglossary.data.repository
+package com.artemissoftware.narutoglossary.data.operations
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -7,7 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.artemissoftware.narutoglossary.domain.repository.DataStoreRepository
+import com.artemissoftware.narutoglossary.domain.operations.DataStoreOperations
 import com.artemissoftware.narutoglossary.util.Constants.PREFERENCES_NAME
 import com.artemissoftware.narutoglossary.util.Constants.PREFERENCES_ONBOARDING_COMPLETED_KEY
 import kotlinx.coroutines.flow.Flow
@@ -17,7 +17,7 @@ import okio.IOException
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = PREFERENCES_NAME)
 
-class DataStoreRepositoryImpl(context: Context) : DataStoreRepository {
+class DataStoreOperationsImpl(context: Context) : DataStoreOperations {
 
     private object PreferencesKey {
         val onBoardingKey = booleanPreferencesKey(name = PREFERENCES_ONBOARDING_COMPLETED_KEY)
