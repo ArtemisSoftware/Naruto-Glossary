@@ -2,5 +2,6 @@
     <string name="app_name">NarutoGlossary</string>
     <string name="app_logo">App logo</string>
     <string name="on_boarding_image">Onboarding image</string>
+    <string name="search_icon">Search icon</string>
 
 </resources>
