@@ -10,4 +10,6 @@ object Constants {
 
     const val PREFERENCES_NAME = "naruto_glossary_preferences"
     const val PREFERENCES_ONBOARDING_COMPLETED_KEY = "onboarding_completed"
+
+    const val BASE_URL = "http://10.0.2.2:8080"
 }
