@@ -1,6 +1,10 @@
 package com.artemissoftware.narutoglossary.di
 
+import androidx.paging.ExperimentalPagingApi
+import com.artemissoftware.narutoglossary.data.local.NarutoGlossaryDataBase
 import com.artemissoftware.narutoglossary.data.remote.NarutoGlossaryApi
+import com.artemissoftware.narutoglossary.data.repository.RemoteDataSourceImpl
+import com.artemissoftware.narutoglossary.domain.repository.RemoteDataSource
 import com.artemissoftware.narutoglossary.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -15,8 +19,8 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-//@ExperimentalPagingApi
-//@ExperimentalSerializationApi
+@ExperimentalPagingApi
+@ExperimentalSerializationApi
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -46,5 +50,18 @@ object NetworkModule {
     @Singleton
     fun provideNarutoGlossaryApi(retrofit: Retrofit): NarutoGlossaryApi {
         return retrofit.create(NarutoGlossaryApi::class.java)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideRemoteDataSource(
+        narutoGlossaryApi: NarutoGlossaryApi,
+        narutoGlossaryDataBase: NarutoGlossaryDataBase
+    ): RemoteDataSource {
+        return RemoteDataSourceImpl(
+            narutoGlossaryApi = narutoGlossaryApi,
+            narutoGlossaryDataBase = narutoGlossaryDataBase
+        )
     }
 }
