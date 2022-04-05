@@ -110,7 +110,7 @@ fun HeroItem(
 
 @ExperimentalCoilApi
 @Composable
-@Preview
+@Preview(showBackground = false)
 fun HeroItemPreview() {
     HeroItem(
         hero = Hero.getMock(),
