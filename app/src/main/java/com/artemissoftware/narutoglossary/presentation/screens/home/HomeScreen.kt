@@ -3,11 +3,14 @@ package com.artemissoftware.narutoglossary.presentation.screens.home
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.artemissoftware.narutoglossary.presentation.screens.home.composables.HomeTopBar
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.artemissoftware.narutoglossary.presentation.screens.common.ListContent
 
 @Composable
 fun HomeScreen(
+    navController: NavHostController,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
 
@@ -18,10 +21,10 @@ fun HomeScreen(
             HomeTopBar(onSearchClicked = {})
         },
         content = {
-//            ListContent(
-//                heroes = allHeroes,
-//                navController = navController
-//            )
+            ListContent(
+                heroes = allHeroes,
+                navController = navController
+            )
         }
     )
 }

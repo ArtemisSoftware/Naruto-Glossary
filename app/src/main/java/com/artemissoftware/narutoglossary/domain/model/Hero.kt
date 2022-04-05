@@ -20,4 +20,23 @@ data class Hero(
     val family: List<String>,
     val abilities: List<String>,
     val natureTypes: List<String>
-)
+){
+
+    companion object{
+
+        fun getMock() = Hero(
+            id = 1,
+            name = "Sasuke",
+            image = "",
+            about = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ",
+            rating = 0.0,
+            power = 100,
+            month = "",
+            day = "",
+            family = listOf(),
+            abilities = listOf(),
+            natureTypes = listOf()
+        )
+    }
+
+}
