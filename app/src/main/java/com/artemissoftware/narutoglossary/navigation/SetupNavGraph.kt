@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.artemissoftware.narutoglossary.presentation.screens.home.HomeScreen
 import com.artemissoftware.narutoglossary.presentation.screens.onboarding.OnboardingScreen
+import com.artemissoftware.narutoglossary.presentation.screens.search.SearchScreen
 import com.artemissoftware.narutoglossary.presentation.screens.splash.SplashScreen
 import com.artemissoftware.narutoglossary.util.Constants.DETAILS_ARGUMENT_KEY
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -41,7 +42,7 @@ fun SetupNavGraph(navController: NavHostController) {
 
         }
         composable(route = Screen.Search.route) {
-
+            SearchScreen()
         }
     }
 }
