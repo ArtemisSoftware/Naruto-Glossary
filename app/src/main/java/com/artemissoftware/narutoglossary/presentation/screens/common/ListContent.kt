@@ -60,7 +60,7 @@ fun HandlePagingResult(
                 false
             }
             error != null -> {
-                //--EmptyScreen(error = error)
+                EmptyScreen(error = error)
                 false
             }
             else -> true
