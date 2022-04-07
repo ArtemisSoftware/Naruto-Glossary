@@ -6,6 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.artemissoftware.narutoglossary.presentation.screens.home.composables.HomeTopBar
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.artemissoftware.narutoglossary.navigation.Screen
 import com.artemissoftware.narutoglossary.presentation.screens.common.ListContent
 
 @Composable
@@ -18,7 +19,9 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            HomeTopBar(onSearchClicked = {})
+            HomeTopBar(onSearchClicked = {
+                navController.navigate(Screen.Search.route)
+            })
         },
         content = {
             ListContent(
