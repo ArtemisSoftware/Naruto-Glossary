@@ -6,6 +6,7 @@ import com.artemissoftware.narutoglossary.data.repository.Repository
 import com.artemissoftware.narutoglossary.domain.operations.DataStoreOperations
 import com.artemissoftware.narutoglossary.domain.usecase.hero.GetAllHeroesUseCase
 import com.artemissoftware.narutoglossary.domain.usecase.hero.HeroesUseCases
+import com.artemissoftware.narutoglossary.domain.usecase.hero.SearchHeroesUseCase
 import com.artemissoftware.narutoglossary.domain.usecase.onboarding.GetOnBoardingCompletionUseCase
 import com.artemissoftware.narutoglossary.domain.usecase.onboarding.OnboardingUseCases
 import com.artemissoftware.narutoglossary.domain.usecase.onboarding.SaveOnBoardingCompletionUseCase
@@ -41,7 +42,8 @@ object RepositoryModule {
     @Singleton
     fun provideHeroesUseCases(repository: Repository): HeroesUseCases {
         return HeroesUseCases(
-            getAllHeroesUseCase = GetAllHeroesUseCase(repository = repository)
+            getAllHeroesUseCase = GetAllHeroesUseCase(repository = repository),
+            searchHeroesUseCase = SearchHeroesUseCase(repository = repository)
         )
     }
 }

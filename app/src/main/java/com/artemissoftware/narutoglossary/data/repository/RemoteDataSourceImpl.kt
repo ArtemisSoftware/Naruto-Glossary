@@ -6,6 +6,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.artemissoftware.narutoglossary.data.local.NarutoGlossaryDataBase
 import com.artemissoftware.narutoglossary.data.pagingsource.HeroRemoteMediator
+import com.artemissoftware.narutoglossary.data.pagingsource.SearchHeroesSource
 import com.artemissoftware.narutoglossary.data.remote.NarutoGlossaryApi
 import com.artemissoftware.narutoglossary.domain.model.Hero
 import com.artemissoftware.narutoglossary.domain.repository.RemoteDataSource
@@ -22,18 +23,24 @@ class RemoteDataSourceImpl (
 
 
     override fun getAllHeroes(): Flow<PagingData<Hero>> {
-        val pagingSourceFactory = { heroDao.getAllHeroes() }
+
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
             remoteMediator = HeroRemoteMediator(
                 narutoGlossaryApi = narutoGlossaryApi,
                 narutoGlossaryDataBase = narutoGlossaryDataBase
             ),
-            pagingSourceFactory = pagingSourceFactory
+            pagingSourceFactory = { heroDao.getAllHeroes() }
         ).flow
     }
 
-    override fun searchHeroes(): Flow<PagingData<Hero>> {
-        TODO("Not yet implemented")
+    override fun searchHeroes(query: String): Flow<PagingData<Hero>> {
+
+        return Pager(
+            config = PagingConfig(pageSize = ITEMS_PER_PAGE),
+            pagingSourceFactory = {
+                SearchHeroesSource(narutoGlossaryApi = narutoGlossaryApi, query = query)
+            }
+        ).flow
     }
 }

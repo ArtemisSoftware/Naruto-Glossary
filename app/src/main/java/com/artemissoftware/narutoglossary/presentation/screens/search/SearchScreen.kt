@@ -5,9 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.artemissoftware.narutoglossary.presentation.screens.common.ListContent
 import com.artemissoftware.narutoglossary.presentation.screens.search.composables.SearchTopBar
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@InternalCoroutinesApi
 @Composable
 fun SearchScreen(
     navController: NavHostController,
@@ -15,7 +18,7 @@ fun SearchScreen(
 ) {
 
     val searchQuery by searchViewModel.searchQuery
-//    val heroes = searchViewModel.searchedHeroes.collectAsLazyPagingItems()
+    val heroes = searchViewModel.searchedHeroes.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = {
@@ -25,7 +28,7 @@ fun SearchScreen(
                     searchViewModel.updateSearchQuery(query = it)
                 },
                 onSearchClicked = {
-                    //searchViewModel.searchHeroes(query = it)
+                    searchViewModel.searchHeroes(query = it)
                 },
                 onCloseClicked = {
                     navController.popBackStack()
