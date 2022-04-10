@@ -13,7 +13,9 @@ import com.artemissoftware.narutoglossary.presentation.screens.search.SearchScre
 import com.artemissoftware.narutoglossary.presentation.screens.splash.SplashScreen
 import com.artemissoftware.narutoglossary.util.Constants.DETAILS_ARGUMENT_KEY
 import com.google.accompanist.pager.ExperimentalPagerApi
+import kotlinx.coroutines.InternalCoroutinesApi
 
+@InternalCoroutinesApi
 @ExperimentalAnimationApi
 @ExperimentalPagerApi
 @Composable

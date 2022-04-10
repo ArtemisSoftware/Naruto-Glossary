@@ -15,12 +15,14 @@ import com.artemissoftware.narutoglossary.navigation.SetupNavGraph
 import com.artemissoftware.narutoglossary.ui.theme.NarutoGlossaryTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.InternalCoroutinesApi
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
 
+    @InternalCoroutinesApi
     @ExperimentalAnimationApi
     @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {

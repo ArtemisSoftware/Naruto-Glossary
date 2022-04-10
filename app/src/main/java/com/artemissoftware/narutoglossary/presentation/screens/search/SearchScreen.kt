@@ -36,7 +36,7 @@ fun SearchScreen(
             )
         },
         content = {
-//            ListContent(heroes = heroes, navController = navController)
+            ListContent(heroes = heroes, navController = navController)
         }
     )
 }
