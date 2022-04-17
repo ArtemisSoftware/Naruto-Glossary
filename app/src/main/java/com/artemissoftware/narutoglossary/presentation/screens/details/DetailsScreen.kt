@@ -13,10 +13,10 @@ import coil.annotation.ExperimentalCoilApi
 @Composable
 fun DetailsScreen(
     navController: NavHostController,
-    //detailsViewModel: DetailsViewModel = hiltViewModel()
+    detailsViewModel: DetailsViewModel = hiltViewModel()
 ) {
-//    val selectedHero by detailsViewModel.selectedHero.collectAsState()
-//
+    val selectedHero by detailsViewModel.selectedHero.collectAsState()
+
 //    DetailsContent(
 //        navController = navController,
 //        selectedHero = selectedHero
