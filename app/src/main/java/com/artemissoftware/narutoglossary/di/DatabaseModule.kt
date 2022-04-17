@@ -3,6 +3,8 @@ package com.artemissoftware.narutoglossary.di
 import android.content.Context
 import androidx.room.Room
 import com.artemissoftware.narutoglossary.data.local.NarutoGlossaryDataBase
+import com.artemissoftware.narutoglossary.data.repository.LocalDataSourceImpl
+import com.artemissoftware.narutoglossary.domain.repository.LocalDataSource
 import com.artemissoftware.narutoglossary.util.Constants.NARUTO_GLOSSARY_DATABASE
 import dagger.Module
 import dagger.Provides
@@ -25,4 +27,15 @@ object DatabaseModule {
         NARUTO_GLOSSARY_DATABASE
     ).build()
 
+
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(
+        narutoGlossaryDataBase: NarutoGlossaryDataBase
+    ): LocalDataSource {
+        return LocalDataSourceImpl(
+            narutoGlossaryDataBase = narutoGlossaryDataBase
+        )
+    }
 }
