@@ -1,5 +1,6 @@
 package com.artemissoftware.narutoglossary.presentation.screens.details.composables
 
+import android.util.Log
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,6 +32,7 @@ import com.artemissoftware.narutoglossary.ui.theme.*
 import com.artemissoftware.narutoglossary.util.Constants.ABOUT_TEXT_MAX_LINES
 import com.artemissoftware.narutoglossary.util.Constants.BASE_URL
 import com.artemissoftware.narutoglossary.util.Constants.MIN_BACKGROUND_IMAGE_HEIGHT
+import com.artemissoftware.narutoglossary.util.currentSheetFraction
 
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
@@ -44,6 +46,7 @@ fun DetailsContent(
     )
 
     val currentSheetFraction = scaffoldState.currentSheetFraction
+    Log.d("fraction New", currentSheetFraction.toString())
 
     val radiusAnim by animateDpAsState(
         targetValue =
@@ -124,21 +127,7 @@ fun BackgroundContent(
     }
 }
 
-@ExperimentalMaterialApi
-val BottomSheetScaffoldState.currentSheetFraction: Float
-    get() {
-        val fraction = bottomSheetState.progress.fraction
-        val targetValue = bottomSheetState.targetValue
-        val currentValue = bottomSheetState.currentValue
 
-        return when {
-            currentValue == Collapsed && targetValue == Collapsed -> 1f
-            currentValue == Expanded && targetValue == Expanded -> 0f
-            currentValue == Collapsed && targetValue == Expanded -> 1f - fraction
-            currentValue == Expanded && targetValue == Collapsed -> 0f + fraction
-            else -> fraction
-        }
-    }
 
 @Composable
 @Preview
