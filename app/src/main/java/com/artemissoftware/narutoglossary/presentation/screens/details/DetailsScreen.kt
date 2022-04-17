@@ -7,6 +7,7 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.annotation.ExperimentalCoilApi
+import com.artemissoftware.narutoglossary.presentation.screens.details.composables.DetailsContent
 
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
@@ -17,8 +18,8 @@ fun DetailsScreen(
 ) {
     val selectedHero by detailsViewModel.selectedHero.collectAsState()
 
-//    DetailsContent(
-//        navController = navController,
-//        selectedHero = selectedHero
-//    )
+    DetailsContent(
+        navController = navController,
+        selectedHero = selectedHero
+    )
 }

@@ -1,5 +1,8 @@
 package com.artemissoftware.narutoglossary.presentation.screens.details
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,6 +24,7 @@ class DetailsViewModel @Inject constructor(
 
     private val _selectedHero: MutableStateFlow<Hero?> = MutableStateFlow(null)
     val selectedHero: StateFlow<Hero?> = _selectedHero
+
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
