@@ -1,5 +1,6 @@
 package com.artemissoftware.narutoglossary.presentation.screens.details.composables
 
+import android.graphics.Color.parseColor
 import android.util.Log
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
@@ -11,8 +12,7 @@ import androidx.compose.material.BottomSheetValue.Collapsed
 import androidx.compose.material.BottomSheetValue.Expanded
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -33,14 +33,34 @@ import com.artemissoftware.narutoglossary.util.Constants.ABOUT_TEXT_MAX_LINES
 import com.artemissoftware.narutoglossary.util.Constants.BASE_URL
 import com.artemissoftware.narutoglossary.util.Constants.MIN_BACKGROUND_IMAGE_HEIGHT
 import com.artemissoftware.narutoglossary.util.currentSheetFraction
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
 fun DetailsContent(
     navController: NavHostController,
-    selectedHero: Hero?
+    selectedHero: Hero?,
+    colors: Map<String, String>
 ) {
+
+    var vibrant by remember { mutableStateOf("#000000") }
+    var darkVibrant by remember { mutableStateOf("#000000") }
+    var onDarkVibrant by remember { mutableStateOf("#ffffff") }
+
+    LaunchedEffect(key1 = selectedHero) {
+        vibrant = colors["vibrant"]!!
+        darkVibrant = colors["darkVibrant"]!!
+        onDarkVibrant = colors["onDarkVibrant"]!!
+    }
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(
+        color = Color(parseColor(darkVibrant))
+    )
+
+
+
     val scaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = rememberBottomSheetState(initialValue = Expanded)
     )
@@ -64,13 +84,21 @@ fun DetailsContent(
         scaffoldState = scaffoldState,
         sheetPeekHeight = MIN_SHEET_HEIGHT,
         sheetContent = {
-            selectedHero?.let { BottomSheetContent(selectedHero = it) }
+            selectedHero?.let {
+                BottomSheetContent(
+                    selectedHero = it,
+                    infoBoxIconColor = Color(parseColor(vibrant)),
+                    sheetBackgroundColor = Color(parseColor(darkVibrant)),
+                    contentColor = Color(parseColor(onDarkVibrant))
+                )
+            }
         },
         content = {
             selectedHero?.let { hero ->
                 BackgroundContent(
                     heroImage = hero.image,
                     imageFraction = currentSheetFraction,
+                    backgroundColor = Color(parseColor(darkVibrant)),
                     onCloseClicked = {
                         navController.popBackStack()
                     }
