@@ -6,7 +6,7 @@ import com.artemissoftware.narutoglossary.data.remote.NarutoGlossaryApi
 import com.artemissoftware.narutoglossary.domain.model.Hero
 import javax.inject.Inject
 
-class SearchHeroesSource @Inject constructor(
+class SearchHeroesSource(
     private val narutoGlossaryApi: NarutoGlossaryApi,
     private val query: String
 ) : PagingSource<Int, Hero>() {

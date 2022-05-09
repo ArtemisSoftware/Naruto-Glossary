@@ -15,7 +15,7 @@ import java.util.*
 import javax.inject.Inject
 
 @ExperimentalPagingApi
-class HeroRemoteMediator @Inject constructor(
+class HeroRemoteMediator (
     private val narutoGlossaryApi: NarutoGlossaryApi,
     private val narutoGlossaryDataBase: NarutoGlossaryDataBase
 ) : RemoteMediator<Int, Hero>() {
